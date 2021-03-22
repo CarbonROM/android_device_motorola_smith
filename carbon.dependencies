@@ -1,0 +1,7 @@
+[
+  {
+    "repository": "CarbonROM/android_kernel_motorola_sm7250",
+    "target_path": "kernel/motorola/sm7250",
+    "branch": "cr-8.0"
+  }
+]

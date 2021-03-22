@@ -1,6 +1,6 @@
 #
 # Copyright (C) 2020 The Android Open Source Project
-# Copyright (C) 2020 The TWRP Open Source Project
+# Copyright (C) 2020 The CarbonROM Projects
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,23 +15,31 @@
 # limitations under the License.
 #
 
-# Inherit from those products. Most specific first.
+# Inherit from those products. Most specfic first.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
-$(call inherit-product-if-exists, $(SRC_TARGET_DIR)/product/embedded.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
+
+# Inherit some common Carbon stuff.
+$(call inherit-product, vendor/carbon/config/common.mk)
+$(call inherit-product, vendor/carbon/config/gsm.mk)
+
+
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
 # Inherit from smith device
 $(call inherit-product, device/motorola/smith/device.mk)
 
-# Inherit some common Omni stuff.
-$(call inherit-product, vendor/omni/config/common.mk)
-$(call inherit-product, vendor/omni/config/gsm.mk)
+# Vendor blobs
+$(call inherit-product-if-exists, vendor/motorola/smith/smith-vendor.mk)
+
 
 # Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := smith
-PRODUCT_NAME := omni_smith
+PRODUCT_NAME := carbon_smith
 PRODUCT_BRAND := motorola
-PRODUCT_MODEL := Motorola Razr
-PRODUCT_MANUFACTURER := motorola
-PRODUCT_RELEASE_NAME := motorola razr
+PRODUCT_MODEL := Razr 5G
+PRODUCT_MANUFACTURER := Motorola Mobility
+PRODUCT_RELEASE_NAME := razr
+
+PRODUCT_BUILD_PROP_OVERRIDES += \
+        PRODUCT_NAME=smith
